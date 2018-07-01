@@ -1,0 +1,103 @@
+﻿@model AjidrezRestaurant.ET.Platos
+@{
+	ViewBag.Title = "Crear";
+	List<AjidrezRestaurant.ET.Clase> clase = ViewBag.Clases;
+}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title</title>
+
+</head>
+<body>
+	@using (Html.BeginForm("Registrar", "Platos", FormMethod.Post))
+	{
+
+		<div class="container-fluid">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item active"><h4 class="text-info"><i class=" fa fa-edit"></i>  Registro / Actualización</h4></li>
+			</ol>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel">
+						<h3 class="page-header text-muted"> @(Model.IdProducto > 0 ? Model.NombreProducto : "Nuevo Registro")</h3>
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="form-group col-md-6">
+									<label class="control-label" for="Nombre">ID: </label>
+									<div class="form-group">
+										<input class="form-control" disabled="disabled" id="IdProducto" name="IdProducto" type="number" value="" placeholder="ID Producto" />
+									</div>
+								</div>
+								<div class="form-group col-md-6">
+									<label class="control-label" for="Nombre">Nombre: </label>
+									<div class="form-group">
+										@Html.TextBoxFor(x => x.NombreProducto, new { @class = "form-control", placeholder = "Nombre" })
+									</div>
+								</div>
+								<div class="form-group col-md-6">
+									<label class="control-label" for="Descripción">Precio:</label>
+									<div class="form-group">
+										@Html.TextBoxFor(x => x.Precio, new { @class = "form-control" })
+									</div>
+								</div>
+								<div class="form-group col-md-6">
+									<label class="control-label" for="Utilidad">Clase:</label>
+									<div class="form-group">
+										<select class="form-control" name="IdClase">
+											<option>Elige Clase...</option>
+											@foreach (var r in clase)
+											{
+												<option @(r.IdClase == Model.IdClase ? "selected" : "") value="@r.IdClase">@r.NombreClase</option>}
+										</select>
+									</div>
+								</div>
+								<div class="form-group col-md-6">
+									<label class="control-label" for="Descripción">Estado:</label>
+									<div class="form-group">
+										@Html.TextBoxFor(x => x.Estado, new { @class = "form-control" })
+									</div>
+								</div>
+				
+							<div class="form-group col-md-6">
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary" value="Registrar">
+									<a href="~/Producto/Listar" class="btn btn-success">Volver</a>
+								</div>
+							</div>
+							<div class="checkbox">
+								<label class="checkbox-inline">
+									<input type="checkbox" id="Lunes" value="option1">L
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="Martes" value="option2">M
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="Miercoles" value="option3">M
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="Jueves" value="option1">J
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="Viernes" value="option2">V
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="Sabado" value="option3">S
+								</label>
+								<label class="checkbox-inline">
+									<input type="checkbox" id="Domingo" value="option3">D
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+</body>
+</html>
+
+

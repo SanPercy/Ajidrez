@@ -1,0 +1,76 @@
+﻿﻿@model List<AjidrezRestaurant.ET.Platos>
+@{
+	ViewBag.Title = "Listar";
+}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Lista de Productos</title>
+	<meta name="viewport" content="width=device-width, initial-scale = 1" />
+</head>
+<body>
+	<div class="container-fluid">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item active">
+				<h4 class="text-info">
+					<i class="fa fa-barcode"> </i> Platos
+				</h4>
+			</li>
+		</ol>
+		<!-- Example DataTables Card-->
+		<div class="panel">
+			<div class="page-header">
+				<a title="Editar" href="~/Clase/Crear"><i class="fa fa-fw fa fa-plus-circle"></i>   Nueva Clase  </a>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-bordered text-center" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nombre</th>
+								<th>Clase</th>
+								<th>Estado</th>
+								<th>Precio</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>
+										@Html.DisplayFor(modelItem => item.IdProducto)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.NombreProducto)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Clase.NombreClase)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Estado)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Precio)
+									</td>
+									<td>
+										<a title="Editar" href="~/Platos/Editar/@item.IdProducto"><span class="glyphicon glyphicon-edit" ></span></a> | 
+										<a title="Detalles" href="~/Platos/Detalles/@item.IdProducto"><span class="glyphicon glyphicon-eye-open"></span></a> |
+										<a title="Eliminar" onclick="return confirm('¿Esta seguro de Eliminar este Registro?');" href="~/Producto/Eliminar/@item.IdProducto"><span class="glyphicon glyphicon-minus"></span></a>
+									</td>
+								</tr>
+}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
